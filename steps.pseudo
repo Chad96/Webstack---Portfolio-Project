@@ -1,0 +1,95 @@
+1. **Project Setup:**
+   - Create a new React project using Vite.
+   - Set up the project structure with essential directories (components, pages, services, etc.).
+   - Install necessary dependencies including react-router-dom, axios (for API calls), and styled-components for styling.
+
+2. **User Management:**
+   - **Registration Page:**
+     - Create a form with fields: Name, Surname, Email, Username, Profile Picture.
+     - On form submission, validate the inputs.
+     - If valid, encrypt the user's password using a hashing library.
+     - Save user data to the JSON server using the `POST` method.
+   
+   - **Login Page:**
+     - Create a login form with fields: Username and Password.
+     - On form submission, validate the inputs.
+     - Check the credentials against the stored encrypted data.
+     - If valid, store the user's session data locally and navigate to the Home Page.
+   
+   - **Profile Page:**
+     - Fetch the user's profile data from the JSON server.
+     - Display the profile information.
+     - Provide options to update profile information and login credentials.
+     - On update, validate the inputs and send the updated data to the JSON server using the `PATCH/PUT` method.
+   
+   - **Authorization & Routing:**
+     - Implement protected routes for pages accessible only to logged-in users (e.g., Home, Profile).
+     - Redirect unauthenticated users to the Login Page.
+     - Ensure logged-in users cannot access the Registration and Login pages.
+
+3. **Recipe Management:**
+   - **Home Page:**
+     - Display a list of all recipes.
+     - Fetch recipes from the JSON server using the `GET` method.
+     - Provide options to view, edit, or delete a recipe.
+   
+   - **Add Recipe:**
+     - Create a form with fields: Recipe Name, Ingredients, Instructions, Category, Preparation Time, Cooking Time, Servings.
+     - On form submission, validate the inputs.
+     - Send the new recipe data to the JSON server using the `POST` method.
+     - Update the recipe list with the newly added recipe.
+
+   - **Edit Recipe:**
+     - Allow users to select a recipe to edit.
+     - Prefill the form with the recipe's existing data.
+     - On form submission, validate the inputs.
+     - Send the updated recipe data to the JSON server using the `PATCH/PUT` method.
+
+   - **Delete Recipe:**
+     - Provide a delete button for each recipe.
+     - On button click, prompt the user for confirmation.
+     - If confirmed, send a `DELETE` request to the JSON server to remove the recipe.
+     - Update the recipe list to reflect the removal.
+
+   - **Search Functionality:**
+     - Implement a search bar on the Home Page.
+     - Allow users to search recipes by name or category.
+     - Filter the displayed recipes based on the search query.
+
+   - **Recipe Categories:**
+     - Classify recipes into categories like Breakfast, Lunch, Dinner, etc.
+     - Allow users to filter recipes by category.
+
+4. **Data Management:**
+   - **Persistence:**
+     - Use a JSON server as the primary data storage.
+     - Ensure all CRUD operations (Create, Read, Update, Delete) interact with the JSON server.
+   
+   - **Performance Optimization:**
+     - Optimize the app for fast loading by minimizing API calls.
+     - Implement lazy loading for components and images where applicable.
+
+   - **Privacy & Security:**
+     - Encrypt sensitive user data, especially login credentials.
+     - Follow best practices for data protection and ensure compliance with relevant privacy laws.
+
+5. **User Interface:**
+   - Create a user-friendly interface that is responsive across different screen sizes.
+   - Use styled-components for consistent styling.
+   - Ensure intuitive navigation with clear labels and buttons.
+   - Add hover effects and transitions for better interactivity.
+
+6. **Code Quality:**
+   - Break down logic into smaller functions to enhance readability.
+   - Use self-explanatory variable names and follow camelCasing conventions.
+   - Reuse components where possible to avoid code duplication.
+   - Add comments where necessary to explain complex logic.
+
+7. **Responsiveness:**
+   - Ensure the app is responsive at common breakpoints (320px, 480px, 768px, 1024px, 1200px).
+   - Test the app on different devices to ensure consistent behavior.
+
+8. **Final Steps:**
+   - Commit your changes frequently to the GitHub repository.
+   - Document your project in the README file, including setup instructions and features.
+   - Push the final version to the main branch and share the GitHub link on Slack with your mentor.

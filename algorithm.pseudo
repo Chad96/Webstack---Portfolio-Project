@@ -1,0 +1,287 @@
+src/
+│
+├── components/
+│   ├── Header.jsx
+│   ├── ProtectedRoute.jsx
+│   ├── LogoutButton.jsx
+│
+├── pages/
+│   ├── HomePage.jsx
+│   ├── LoginPage.jsx
+│   ├── RegisterPage.jsx
+│   ├── ProfilePage.jsx
+│   ├── RecipeList.jsx
+│   ├── RecipeForm.jsx
+│
+├── styles/
+│   ├── GlobalStyles.js
+│
+├── App.jsx
+├── index.js
+
+Initialize the project setup and necessary imports
+// Step 1: Set up a new React project using Vite
+// Step 2: Create folders and structure (components, pages, services)
+// Step 3: Install dependencies: react-router-dom, axios, styled-components
+
+
+// User Registration Process
+function registerUser() {
+    // Step 1: Create a registration form with fields: Name, Surname, Email, Username, Profile Picture
+    // Step 2: On form submission, validate user input
+    function validateRegistrationInput(input) {
+        // Check if all fields are filled
+        // Validate email format
+        // Check for the uniqueness of the username
+    }
+
+    // Step 3: Encrypt the password before sending
+    function encryptPassword(password) {
+        // Use a hashing library to encrypt the password
+        return encryptedPassword;
+    }
+
+    // Step 4: Save user data to the JSON server
+    function saveUserData(userData) {
+        // Send a POST request to the JSON server with the user data
+    }
+
+    // Step 5: Confirm successful registration and navigate to the Login Page
+    function navigateToLogin() {
+        // Redirect the user to the Login Page
+    }
+}
+
+// User Login Process
+function loginUser() {
+    // Step 1: Create a login form with fields: Username, Password
+    // Step 2: On form submission, validate the inputs
+    function validateLoginInput(username, password) {
+        // Check if both fields are filled
+    }
+
+    // Step 3: Retrieve user data from the JSON server
+    function fetchUserData(username) {
+        // Send a GET request to retrieve the user data by username
+        return userData;
+    }
+
+    // Step 4: Decrypt the password and compare it with the user's input
+    function decryptPassword(encryptedPassword) {
+        // Use the same hashing library to compare the encrypted password
+        return isMatch;
+    }
+
+    // Step 5: If valid, store session data and navigate to Home Page
+    function handleLoginSuccess() {
+        // Save session data locally
+        // Redirect the user to the Home Page
+    }
+
+    // Step 6: If invalid, display an error message
+    function displayLoginError() {
+        // Show an error message to the user
+    }
+}
+
+// Profile Management
+function manageUserProfile() {
+    // Step 1: Fetch user profile data from the JSON server
+    function fetchUserProfile(userId) {
+        // Send a GET request to retrieve the user profile data
+        return userProfileData;
+    }
+
+    // Step 2: Display profile information on the Profile Page
+    function displayUserProfile(profileData) {
+        // Render profile information on the Profile Page
+    }
+
+    // Step 3: Allow the user to update profile information and login credentials
+    function updateUserProfile(updatedData) {
+        // Validate updated input
+        // Encrypt password if it has been changed
+        // Send a PATCH/PUT request to update the user profile data
+    }
+
+    // Step 4: Confirm successful update and refresh the profile
+    function handleProfileUpdateSuccess() {
+        // Notify the user of a successful update
+        // Refresh the displayed profile information
+    }
+}
+
+// Authorization and Protected Routing
+function protectRoutes() {
+    // Step 1: Check if the user is logged in
+    function isUserLoggedIn() {
+        // Verify session data exists
+        return isLoggedIn;
+    }
+
+    // Step 2: Implement protected routes
+    function protectRoute(route) {
+        if (!isUserLoggedIn()) {
+            redirectToLogin();
+        }
+    }
+
+    // Step 3: Redirect unauthorized users
+    function redirectToLogin() {
+        // Redirect the user to the Login Page
+    }
+}
+
+// Recipe Management
+function manageRecipes() {
+    // Add Recipe
+    function addRecipe(recipeData) {
+        // Validate recipe data
+        function validateRecipeInput(input) {
+            // Check if all fields are filled correctly
+        }
+
+        // Send the validated recipe data to the JSON server
+        function saveRecipe(recipeData) {
+            // Send a POST request to save the recipe
+        }
+
+        // Update the displayed list with the new recipe
+        function updateRecipeList(newRecipe) {
+            // Add the new recipe to the list and re-render the Home Page
+        }
+    }
+
+    // View Recipes
+    function fetchRecipes() {
+        // Send a GET request to retrieve all recipes
+        return recipes;
+    }
+
+    function displayRecipes(recipeList) {
+        // Render the list of recipes on the Home Page
+    }
+
+    // Edit Recipe
+    function editRecipe(recipeId, updatedData) {
+        // Fetch the selected recipe data
+        function fetchRecipeData(recipeId) {
+            // Send a GET request to retrieve the specific recipe data
+            return recipeData;
+        }
+
+        // Prefill the form with existing recipe data
+        function prefillEditForm(recipeData) {
+            // Populate the edit form with the existing recipe information
+        }
+
+        // Validate and send the updated recipe data to the server
+        function updateRecipeData(updatedData) {
+            // Validate the input
+            // Send a PATCH/PUT request to update the recipe
+        }
+
+        // Refresh the displayed recipe list
+        function refreshRecipeList(updatedRecipe) {
+            // Update the recipe list with the edited recipe
+        }
+    }
+
+    // Delete Recipe
+    function deleteRecipe(recipeId) {
+        // Confirm the deletion with the user
+        function confirmDeletion() {
+            // Show a confirmation prompt to the user
+            return userConfirmed;
+        }
+
+        // Send a DELETE request to remove the recipe
+        function removeRecipeFromServer(recipeId) {
+            // Send the DELETE request
+        }
+
+        // Remove the recipe from the displayed list
+        function updateRecipeListAfterDeletion(recipeId) {
+            // Remove the recipe from the list and re-render the Home Page
+        }
+    }
+
+    // Search Recipes
+    function searchRecipes(query) {
+        // Filter recipes by name or category
+        function filterRecipes(query) {
+            // Filter the recipes based on the query
+            return filteredRecipes;
+        }
+
+        // Update the displayed recipe list to match the search query
+        function displayFilteredRecipes(filteredRecipes) {
+            // Re-render the recipe list with the filtered recipes
+        }
+    }
+}
+
+// Handle Recipe Categories
+function categorizeRecipes() {
+    // Classify recipes by category during the add/edit process
+    function assignCategory(recipeData) {
+        // Assign a category to the recipe based on user input
+    }
+
+    // Filter displayed recipes by category
+    function filterRecipesByCategory(category) {
+        // Filter the list of recipes to show only those in the selected category
+    }
+}
+
+// Data Management
+function handleDataManagement() {
+    // Ensure all data operations interact with the JSON server
+    function handleCRUDOperations(operation, data) {
+        // Depending on the operation (CREATE, READ, UPDATE, DELETE), interact with the server
+    }
+
+    // Optimize performance by minimizing unnecessary API calls
+    function optimizePerformance() {
+        // Implement caching or lazy loading to improve performance
+    }
+
+    // Ensure data privacy and security
+    function ensureDataSecurity() {
+        // Encrypt sensitive data
+        // Follow best practices for secure storage and transmission
+    }
+}
+
+// User Interface and Responsiveness
+function buildUserInterface() {
+    // Design a responsive and user-friendly UI
+    function createResponsiveUI() {
+        // Ensure UI elements are responsive across various screen sizes
+        // Use styled-components for consistent styling
+    }
+
+    // Add interactive elements like hover effects and transitions
+    function addInteractivity() {
+        // Implement hover effects, animations, and transitions
+    }
+}
+
+// Final Steps
+function finalizeProject() {
+    // Commit changes to GitHub regularly
+    function commitToGitHub() {
+        // Stage, commit, and push changes to the repository
+    }
+
+    // Test the application to ensure all features work
+    function testApplication() {
+        // Perform thorough testing and debugging
+    }
+
+    // Push the final version and share the link as required
+    function finalizeAndSubmit() {
+        // Push the final code to the main branch
+        // Submit the GitHub link to the mentor
+    }
+}
