@@ -1,4 +1,11 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": "9191",
+      "username": "Chad",
+      "email": "chadrackndalamba@gmail.com",
+      "password": "Nda_28339290"
+    }
+  ],
   "recipes": []
 }

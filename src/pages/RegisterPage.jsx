@@ -1,9 +1,35 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./FormPage.css"; // Create this file for custom styles
+import "./FormPage.css";
 
 const RegisterPage = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const user = {
+      username,
+      email,
+      password,
+    };
+
+    try {
+      // Make POST request to JSON server to save the user
+      await axios.post("http://localhost:3000/users", user);
+
+      // Automatically redirect to the login page
+      navigate("/login");
+    } catch (error) {
+      console.error("Error registering user:", error);
+    }
+  };
+
   return (
     <div className="container mt-5">
       <nav className="nav justify-content-end">
@@ -15,7 +41,7 @@ const RegisterPage = () => {
         </Link>
       </nav>
       <h2 className="text-center mb-4">Register</h2>
-      <form className="form-signin">
+      <form className="form-signin" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
           <input
@@ -23,6 +49,9 @@ const RegisterPage = () => {
             className="form-control"
             id="username"
             placeholder="Enter username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
           />
         </div>
         <div className="form-group">
@@ -32,6 +61,9 @@ const RegisterPage = () => {
             className="form-control"
             id="email"
             placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
         <div className="form-group">
@@ -41,6 +73,9 @@ const RegisterPage = () => {
             className="form-control"
             id="password"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
         <button type="submit" className="btn btn-primary btn-block">
