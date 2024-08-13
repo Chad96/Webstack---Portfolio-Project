@@ -37,8 +37,8 @@ Before you begin, ensure you have the following installed:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/Chad96/online-recipe-app.git
-cd online-recipe-app
+git clone https://github.com/Chad96/Recipe-app-react.git
+cd Recipe-app-react
 
 Install Dependencies
     npm install
