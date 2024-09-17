@@ -15,7 +15,7 @@ const LoginPage = () => {
     try {
       // Fetch the user from the JSON server based on the entered email
       const response = await axios.get(
-        `http://localhost:3000/users?email=${email}`
+        `http://localhost:5000/users?email=${email}`
       );
       const user = response.data[0];
 

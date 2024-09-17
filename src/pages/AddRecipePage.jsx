@@ -28,29 +28,36 @@ const AddRecipePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const reader = new FileReader();
-    reader.onloadend = async () => {
-      const base64Image = reader.result;
+    if (formData.image) {
+      const reader = new FileReader();
+      
+      reader.onloadend = async () => {
+        const base64Image = reader.result;
 
-      const recipeData = {
-        ...formData,
-        image: base64Image,
+        // Convert the image to SHA-256 hash
+        const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(base64Image));
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+
+        const recipeData = {
+          ...formData,
+          image: base64Image, // Base64 image
+          imageHash: hashHex,  // SHA-256 hash of the base64 image
+        };
+
+        try {
+          await axios.post("http://localhost:5000/recipes", recipeData);
+          alert("Recipe added successfully!");
+        } catch (error) {
+          console.error("Failed to add recipe:", error);
+          alert("Failed to add recipe.");
+        }
       };
 
-      try {
-        await axios.post("http://localhost:3000/recipes", recipeData);
-        alert("Recipe added successfully!");
-      } catch (error) {
-        console.error("Failed to add recipe:", error);
-        alert("Failed to add recipe.");
-      }
-    };
-
-    if (formData.image) {
-      reader.readAsDataURL(formData.image);
+      reader.readAsDataURL(formData.image); // Convert the image to base64
     } else {
       try {
-        await axios.post("http://localhost:3000/recipes", formData);
+        await axios.post("http://localhost:5000/recipes", formData);
         alert("Recipe added successfully!");
       } catch (error) {
         console.error("Failed to add recipe:", error);

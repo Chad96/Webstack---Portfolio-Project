@@ -11,7 +11,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/recipes");
+        const response = await axios.get("http://localhost:5000/recipes");
         setRecipes(response.data);
       } catch (error) {
         console.error("Error fetching recipes:", error);
@@ -23,7 +23,7 @@ const HomePage = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/recipes/${id}`);
+      await axios.delete(`http://localhost:5000/recipes/${id}`);
       setRecipes(recipes.filter((recipe) => recipe.id !== id));
     } catch (error) {
       console.error("Error deleting recipe:", error);

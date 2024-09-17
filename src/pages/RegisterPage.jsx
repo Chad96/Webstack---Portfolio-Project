@@ -43,7 +43,7 @@ const RegisterPage = () => {
     };
 
     try {
-      await axios.post("http://localhost:3000/users", user);
+      await axios.post("http://localhost:5000/users", user);
       alert("Registration successful!");
       navigate("/login");
     } catch (error) {

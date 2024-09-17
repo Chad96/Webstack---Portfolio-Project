@@ -21,7 +21,7 @@ const EditRecipePage = () => {
     // Fetch the recipe details based on ID
     const fetchRecipe = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/recipes/${id}`);
+        const response = await axios.get(`http://localhost:5000/recipes/${id}`);
         const data = response.data;
         setFormData({
           name: data.name,
@@ -63,7 +63,7 @@ const EditRecipePage = () => {
       };
 
       try {
-        await axios.put(`http://localhost:3000/recipes/${id}`, updatedRecipe);
+        await axios.put(`http://localhost:5000/recipes/${id}`, updatedRecipe);
         alert("Recipe updated successfully!");
         navigate("/home");
       } catch (error) {
@@ -76,7 +76,7 @@ const EditRecipePage = () => {
       reader.readAsDataURL(formData.image);
     } else {
       try {
-        await axios.put(`http://localhost:3000/recipes/${id}`, formData);
+        await axios.put(`http://localhost:5000/recipes/${id}`, formData);
         alert("Recipe updated successfully!");
         navigate("/home");
       } catch (error) {

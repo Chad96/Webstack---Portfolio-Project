@@ -17,7 +17,7 @@ const ProfilePage = () => {
         // Replace with actual user ID
         const userId = "6a3c"; // This should be dynamic, based on logged-in user
         const response = await axios.get(
-          `http://localhost:3000/users/${userId}`
+          `http://localhost:5000/users/${userId}`
         );
         setUser(response.data);
         setUsername(response.data.username);
@@ -49,7 +49,7 @@ const ProfilePage = () => {
           : user.profilePicture,
       };
 
-      await axios.put(`http://localhost:3000/users/${user.id}`, updatedUser);
+      await axios.put(`http://localhost:5000/users/${user.id}`, updatedUser);
       alert("Profile updated successfully!");
       setEditing(false);
     } catch (error) {

@@ -11,7 +11,7 @@ const RecipePage = () => {
     // Fetch recipe details by ID
     const fetchRecipe = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/recipes/${id}`);
+        const response = await axios.get(`http://localhost:5000/recipes/${id}`);
         setRecipe(response.data);
       } catch (error) {
         console.error("Error fetching recipe:", error);
