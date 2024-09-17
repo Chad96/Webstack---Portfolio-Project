@@ -11,7 +11,7 @@ const LandingPage = () => {
       <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header className="mb-auto">
           <div>
-            <h3 className="float-md-start mb-0">Cover</h3>
+            <h3 className="float-md-start mb-0">Recipe Master</h3>
             <nav className="nav nav-masthead justify-content-center float-md-end">
               <Link className="nav-link active" to="/">
                 Home
@@ -46,11 +46,14 @@ const LandingPage = () => {
         <footer className="mt-auto text-white-50">
           <p>
             Recipe{" "}
-            <a href="https://getbootstrap.com/" className="text-white">
+            <a
+              href="https://www.linkedin.com/in/chadrack-ndalamba-442139137/"
+              className="text-white"
+            >
               Master
             </a>
             , by{" "}
-            <a href="https://twitter.com/mdo" className="text-white">
+            <a href="https://github.com/Chad96" className="text-white">
               Chad_codes
             </a>
             .
