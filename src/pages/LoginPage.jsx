@@ -1,41 +1,26 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebaseauth"; // Adjust the import if your file path differs
 import "bootstrap/dist/css/bootstrap.min.css";
-import cryptoJS from "crypto-js";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Fetch the user from the JSON server based on the entered email
-      const response = await axios.get(
-        `http://localhost:5000/users?email=${email}`
-      );
-      const user = response.data[0];
-
-      if (user) {
-        // Hash the entered password using SHA-256
-        const hashedPassword = cryptoJS.SHA256(password).toString();
-
-        // Check if the hashed passwords match
-        if (hashedPassword === user.password) {
-          alert("Login successful!");
-          navigate("/home"); // Redirect to the Home page displaying saved recipes
-        } else {
-          alert("Incorrect password! Please try again.");
-        }
-      } else {
-        alert("User not found! Please register first.");
-      }
+      // Firebase authentication for logging in the user
+      await signInWithEmailAndPassword(auth, email, password);
+      alert("Login successful!");
+      navigate("/home"); // Redirect to the Home page
     } catch (error) {
-      console.error("Error logging in:", error);
-      alert("Login failed! Please try again.");
+      console.error("Error logging in:", error.message);
+      setError(error.message);
     }
   };
 
@@ -66,28 +51,11 @@ const LoginPage = () => {
         }}
       >
         <h3 style={{ margin: "0", paddingLeft: "20px" }}>Recipe Master</h3>
-        <nav
-          style={{
-            padding: "0 20px",
-          }}
-        >
-          <Link
-            to="/"
-            style={{
-              marginRight: "20px",
-              textDecoration: "none",
-              color: "white",
-            }}
-          >
+        <nav style={{ padding: "0 20px" }}>
+          <Link to="/" style={{ marginRight: "20px", textDecoration: "none", color: "white" }}>
             Home
           </Link>
-          <Link
-            to="/register"
-            style={{
-              textDecoration: "none",
-              color: "white",
-            }}
-          >
+          <Link to="/register" style={{ textDecoration: "none", color: "white" }}>
             Register
           </Link>
         </nav>
@@ -113,6 +81,7 @@ const LoginPage = () => {
             }}
           >
             <h2 className="text-center mb-4">Log In</h2>
+            {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
             <div style={{ marginBottom: "15px" }}>
               <label htmlFor="email">Email address</label>
               <input

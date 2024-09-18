@@ -13,8 +13,8 @@ const LandingPage = () => {
           <div>
             <h3 className="float-md-start mb-0">Recipe Master</h3>
             <nav className="nav nav-masthead justify-content-center float-md-end">
-              <Link className="nav-link active" to="/">
-                Home
+              <Link className="nav-link active" to="/recipes">
+                Recipes API
               </Link>
               <Link className="nav-link" to="/register">
                 Register
