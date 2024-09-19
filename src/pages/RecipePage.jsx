@@ -1,114 +1,77 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { FaSearch, FaShareAlt, FaStar } from 'react-icons/fa';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './ApiPage.css'; // Assuming you want to separate the styles in a CSS file
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams, Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const ApiPage = () => {
-  const [query, setQuery] = useState('');
-  const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [filter, setFilter] = useState('');
-  const [ratings, setRatings] = useState({});
+const RecipePage = () => {
+  const { id } = useParams(); // Get recipe ID from URL
+  const [recipe, setRecipe] = useState(null);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    // Fetch recipe details by ID
+    const fetchRecipe = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/recipes/${id}`);
+        setRecipe(response.data);
+      } catch (error) {
+        console.error("Error fetching recipe:", error);
+      }
+    };
 
-  const fetchRecipes = async (searchQuery) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await axios.get(
-        `https://api.edamam.com/search`,
-        {
-          params: {
-            q: searchQuery,
-            app_id: 'bf8300aa', 
-            app_key: '1edea26f0274fa1e706b3e3c8bf4fe37',
-            from: 0,
-            to: 10, 
-            health: filter || undefined,
-          },
-        }
-      );
-      setRecipes(response.data.hits);
-    } catch (err) {
-      setError('Error fetching recipes. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
+    fetchRecipe();
+  }, [id]);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    fetchRecipes(query);
-  };
-
-  const handleFilterChange = (e) => {
-    setFilter(e.target.value);
-    fetchRecipes(query); 
-  };
-
-  const handleRating = (recipeLabel, rating) => {
-    setRatings((prevRatings) => ({
-      ...prevRatings,
-      [recipeLabel]: rating,
-    }));
-  };
-
-  const handleShare = (recipe) => {
-    if (navigator.share) {
-      navigator.share({
-        title: recipe.label,
-        text: 'Check out this recipe!',
-        url: recipe.url,
-      })
-      .catch((error) => console.log('Error sharing:', error));
-    } else {
-      alert('Your browser does not support sharing.');
-    }
-  };
+  if (!recipe) return <p>Loading...</p>;
 
   return (
-    <div>
-      {/* Custom-styled Navigation Bar */}
-      <nav className="navbar custom-navbar navbar-expand-lg">
-        <div className="container">
-          <a className="navbar-brand" href="/">Recipe App</a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <button className="nav-link btn custom-nav-link" onClick={() => navigate('/')}>Home</button>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link btn custom-nav-link" onClick={() => navigate('/profile')}>Profile</button>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link btn custom-nav-link" onClick={() => navigate('/about')}>About</button>
-              </li>
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundImage: `url('/src/assets/your-background-image.jpg')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        padding: "20px",
+      }}
+    >
+      <div className="container">
+        <h1 className="text-center mb-4">{recipe.name}</h1>
+        <div className="row">
+          <div className="col-md-6">
+            <h3>Ingredients</h3>
+            <ul>
+              {recipe.ingredients.split("\n").map((ingredient, index) => (
+                <li key={index}>{ingredient}</li>
+              ))}
             </ul>
+            <h3>Instructions</h3>
+            <p>{recipe.instructions}</p>
+            <Link
+              to="/home"
+              style={{
+                textDecoration: "none",
+                color: "#007bff",
+              }}
+            >
+              Back to Home
+            </Link>
+          </div>
+          <div className="col-md-6">
+            <img
+              src={recipe.image}
+              alt={recipe.name}
+              style={{
+                width: "100%",
+                height: "auto",
+                maxHeight: "400px",
+                objectFit: "cover",
+                borderRadius: "8px",
+              }}
+            />
           </div>
         </div>
-      </nav>
-
-      {/* Rest of your ApiPage content */}
-      <div className="api-page">
-        {/* Your existing search, filter, and recipe display logic here */}
       </div>
     </div>
   );
 };
 
-export default ApiPage;
+export default RecipePage;
