@@ -24,10 +24,10 @@ const ApiPage = () => {
         {
           params: {
             q: searchQuery,
-            app_id: 'bf8300aa', 
+            app_id: 'bf8300aa',
             app_key: '1edea26f0274fa1e706b3e3c8bf4fe37',
             from: 0,
-            to: 10, 
+            to: 10,
             health: filter || undefined,
           },
         }
@@ -47,7 +47,7 @@ const ApiPage = () => {
 
   const handleFilterChange = (e) => {
     setFilter(e.target.value);
-    fetchRecipes(query); 
+    fetchRecipes(query);
   };
 
   const handleRating = (recipeLabel, rating) => {
@@ -104,95 +104,97 @@ const ApiPage = () => {
       </nav>
 
       {/* Main content section */}
-      <div className="container mt-5 pt-5">
-        {/* Search Form */}
-        <form onSubmit={handleSearch} className="mb-4">
-          <div className="input-group">
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="form-control"
-              placeholder="Search for recipes..."
-            />
-            <div className="input-group-append">
-              <button className="btn btn-primary" type="submit">
-                <FaSearch /> Search
-              </button>
+      <div className="content-wrapper">
+        <div className="container mt-5 pt-5">
+          {/* Search Form */}
+          <form onSubmit={handleSearch} className="mb-4">
+            <div className="input-group">
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="form-control"
+                placeholder="Search for recipes..."
+              />
+              <div className="input-group-append">
+                <button className="btn btn-primary" type="submit">
+                  <FaSearch /> Search
+                </button>
+              </div>
             </div>
+          </form>
+
+          {/* Filter Section */}
+          <div className="mb-4">
+            <label htmlFor="filter">Filter by Health Labels:</label>
+            <select
+              id="filter"
+              value={filter}
+              onChange={handleFilterChange}
+              className="form-control"
+            >
+              <option value="">All</option>
+              <option value="vegan">Vegan</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="gluten-free">Gluten-Free</option>
+              <option value="low-sugar">Low Sugar</option>
+              <option value="low-fat">Low Fat</option>
+            </select>
           </div>
-        </form>
 
-        {/* Filter Section */}
-        <div className="mb-4">
-          <label htmlFor="filter">Filter by Health Labels:</label>
-          <select
-            id="filter"
-            value={filter}
-            onChange={handleFilterChange}
-            className="form-control"
-          >
-            <option value="">All</option>
-            <option value="vegan">Vegan</option>
-            <option value="vegetarian">Vegetarian</option>
-            <option value="gluten-free">Gluten-Free</option>
-            <option value="low-sugar">Low Sugar</option>
-            <option value="low-fat">Low Fat</option>
-          </select>
-        </div>
+          {/* Search Results Section */}
+          <section className="search-results">
+            {loading && <p>Loading...</p>}
+            {error && <p>{error}</p>}
 
-        {/* Search Results Section */}
-        <section className="search-results">
-          {loading && <p>Loading...</p>}
-          {error && <p>{error}</p>}
+            {recipes.length > 0 ? (
+              <div className="row">
+                {recipes.map((item, index) => (
+                  <div key={index} className="col-md-3 mb-4">
+                    <div className="card h-100">
+                      <img
+                        src={item.recipe.image}
+                        className="card-img-top"
+                        alt={item.recipe.label}
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">{item.recipe.label}</h5>
+                        <p className="card-text"><strong>Source:</strong> {item.recipe.source}</p>
+                        <a
+                          href={item.recipe.url}
+                          className="btn btn-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Recipe
+                        </a>
+                        <button className="btn btn-outline-secondary ml-2" onClick={() => handleShare(item.recipe)}>
+                          <FaShareAlt /> Share
+                        </button>
 
-          {recipes.length > 0 ? (
-            <div className="row">
-              {recipes.map((item, index) => (
-                <div key={index} className="col-md-3 mb-4">
-                  <div className="card h-100">
-                    <img
-                      src={item.recipe.image}
-                      className="card-img-top"
-                      alt={item.recipe.label}
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title">{item.recipe.label}</h5>
-                      <p className="card-text"><strong>Source:</strong> {item.recipe.source}</p>
-                      <a
-                        href={item.recipe.url}
-                        className="btn btn-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        View Recipe
-                      </a>
-                      <button className="btn btn-outline-secondary ml-2" onClick={() => handleShare(item.recipe)}>
-                        <FaShareAlt /> Share
-                      </button>
-
-                      {/* Star Rating */}
-                      <div className="mt-2">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <FaStar
-                            key={star}
-                            onClick={() => handleRating(item.recipe.label, star)}
-                            style={{
-                              color: ratings[item.recipe.label] >= star ? 'gold' : 'gray',
-                              cursor: 'pointer',
-                            }}
-                          />
-                        ))}
+                        {/* Star Rating */}
+                        <div className="mt-2">
+                          {[1, 2, 3, 4, 5].map((star) => (
+                            <FaStar
+                              key={star}
+                              onClick={() => handleRating(item.recipe.label, star)}
+                              style={{
+                                color: ratings[item.recipe.label] >= star ? 'gold' : 'gray',
+                                cursor: 'pointer',
+                              }}
+                            />
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            !loading && <p>No recipes found.</p>
-          )}
-        </section>
+                ))}
+              </div>
+            ) : (
+              !loading && <p>No recipes found.</p>
+            )}
+          </section>
+        </div>
       </div>
     </div>
   );

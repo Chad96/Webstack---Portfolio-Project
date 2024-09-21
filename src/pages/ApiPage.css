@@ -62,3 +62,7 @@
     margin-bottom: 10px; /* Add spacing between items */
   }
 }
+/* Ensure the content doesn't overlap with the fixed navbar */
+.content-wrapper {
+  margin-top: 100%; /* Adjust according to the actual height of your navbar */
+}
