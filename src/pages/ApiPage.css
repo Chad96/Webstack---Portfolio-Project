@@ -1,68 +1,68 @@
 /* ApiPage.css */
 
-/* Custom navbar styling similar to RecipePage.jsx */
+
 .custom-navbar {
-  background-color: #333; /* Dark background for navbar */
-  color: white; /* White text */
-  padding: 1em; /* Add some padding */
+  background-color: #333; 
+  color: white; 
+  padding: 1em; 
 }
 
 .custom-navbar .navbar-brand {
-  color: white; /* Ensure brand name is white */
-  font-size: 24px; /* Slightly larger font size */
-  text-transform: uppercase; /* Make text uppercase */
-  letter-spacing: 2px; /* Add some letter spacing */
+  color: white; 
+  font-size: 24px; 
+  text-transform: uppercase;
+  letter-spacing: 2px; 
 }
 
 .custom-navbar .navbar-toggler {
-  border: none; /* Remove the default border */
+  border: none; 
 }
 
 .custom-navbar .navbar-toggler-icon {
-  color: white; /* White color for toggle icon */
+  color: white; 
 }
 
 .custom-navbar .navbar-nav {
-  margin-left: 3%; /* Push navbar items to the right */
+  margin-left: 3%; 
  
 }
 
 .custom-navbar .navbar-nav .nav-item .nav-link {
-  color: white; /* White color for the links */
-  font-size: 18px; /* Adjust font size */
-  margin-left: 20px; /* Add some spacing between links */
+  color: white; 
+  font-size: 18px;
+  margin-left: 20px; 
 }
 
 .custom-navbar .navbar-nav .nav-item .nav-link:hover {
-  color: #007bff; /* Change to Bootstrap primary color on hover */
+  color: #007bff; 
 }
 
 .custom-navbar .navbar-nav .nav-item .custom-nav-link {
-  background: none; /* No background */
-  border: none; /* No border */
-  color: white; /* White text */
-  padding: 0; /* No padding */
+  background: none; 
+  border: none;
+  color: white; 
+  padding: 0; 
   font-size: 18px;
 }
 
 .custom-navbar .navbar-nav .nav-item .custom-nav-link:hover {
-  color: #007bff; /* On hover, change to primary color */
+  color: #007bff; 
 }
 
 @media (max-width: 768px) {
   .custom-navbar {
-    text-align: center; /* Center text on smaller screens */
+    text-align: center; 
   }
 
   .custom-navbar .navbar-nav {
-    margin-top: 10px; /* Add margin between links on smaller screens */
+    margin-top: 10px; 
   }
 
   .custom-navbar .navbar-nav .nav-item {
-    margin-bottom: 10px; /* Add spacing between items */
+    margin-bottom: 10px; 
   }
 }
-/* Ensure the content doesn't overlap with the fixed navbar */
+
 .content-wrapper {
-  margin-top: 100%; /* Adjust according to the actual height of your navbar */
+  margin-top: 90%; 
 }
