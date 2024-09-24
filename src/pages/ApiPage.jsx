@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch, FaShareAlt, FaStar } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './ApiPage.css'; // Assuming styles are separated into this CSS file
+import './ApiPage.css'; 
 
 const ApiPage = () => {
   const [query, setQuery] = useState('');
@@ -72,6 +72,7 @@ const ApiPage = () => {
 
   return (
     <div>
+       <h2 className="text-center mb-4">Search Recipes</h2>
       {/* Fixed Navigation Bar */}
       <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
         <div className="container">
