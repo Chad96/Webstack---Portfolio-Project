@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../../firebaseauth"; // Import Firebase authentication
+// import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+// import { auth } from "../../firebaseauth"; // Import Firebase authentication
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const RegisterPage = () => {
