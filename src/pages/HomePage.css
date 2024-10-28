@@ -1,18 +1,28 @@
 .recipes-container {
   display: grid;
+  gap: 20px;
+}
+
+.top-row,
+.bottom-row {
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
+.bottom-row {
+  margin-top: 40px; /* Adjust spacing between the top and bottom rows */
+}
+
 .recipe-card {
   width: 200px;
-  height: 200px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 10px;
+  padding: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -24,5 +34,19 @@
 }
 
 .recipe-actions {
-  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 32px;
+}
+
+.recipe-actions-bottom {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 70px; /* Adjust this to control spacing for bottom row buttons */
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
 }

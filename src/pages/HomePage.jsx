@@ -45,21 +45,44 @@ const HomePage = () => {
     <div>
       <h1>Recipes</h1>
       {error && <p className="error">Error fetching recipes: {error}</p>}
+      
       <div className="recipes-container">
         {recipes.length > 0 ? (
-          recipes.map(recipe => (
-            <div className="recipe-card" key={recipe._id}>
-              <img src={recipe.imageUrl || 'default-image.jpg'} alt={recipe.name} className="recipe-image" />
-              <div className="recipe-details">
-                <h2>{recipe.name}</h2>
-                <p><strong>Cooking Time:</strong> {recipe.cookingTime} minutes</p>
-                <p><strong>Difficulty:</strong> {recipe.difficulty}</p>
-              </div>
-              <div className="recipe-actions">
-                <button onClick={() => viewRecipe(recipe._id)}>View Recipe</button>
-              </div>
+          <>
+            {/* Top row of cards */}
+            <div className="top-row">
+              {recipes.slice(0, 2).map(recipe => (
+                <div className="recipe-card" key={recipe._id}>
+                  <img src={recipe.imageUrl || 'default-image.jpg'} alt={recipe.name} className="recipe-image" />
+                  <div className="recipe-details">
+                    <h2>{recipe.name}</h2>
+                    <p><strong>Cooking Time:</strong> {recipe.cookingTime} minutes</p>
+                    <p><strong>Difficulty:</strong> {recipe.difficulty}</p>
+                  </div>
+                  <div className="recipe-actions">
+                    <button onClick={() => viewRecipe(recipe._id)}>View Recipe</button>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))
+
+            {/* Bottom row of cards */}
+            <div className="bottom-row">
+              {recipes.slice(2).map(recipe => (
+                <div className="recipe-card" key={recipe._id}>
+                  <img src={recipe.imageUrl || 'default-image.jpg'} alt={recipe.name} className="recipe-image" />
+                  <div className="recipe-details">
+                    <h2>{recipe.name}</h2>
+                    <p><strong>Cooking Time:</strong> {recipe.cookingTime} minutes</p>
+                    <p><strong>Difficulty:</strong> {recipe.difficulty}</p>
+                  </div>
+                  <div className="recipe-actions recipe-actions-bottom">
+                    <button onClick={() => viewRecipe(recipe._id)}>View Recipe</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
         ) : (
           !error && <p>No recipes found.</p>
         )}
