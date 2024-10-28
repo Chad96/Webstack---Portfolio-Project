@@ -8,9 +8,9 @@ import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import AddRecipePage from "./pages/AddRecipePage";
 import EditRecipePage from "./pages/EditRecipePage";
-import RecipePage from "./pages/RecipePage"; // Import RecipePage
-import ApiPage from "./pages/ApiPage"; // Import ApiPage
-
+import RecipePage from "./pages/RecipePage";
+import ApiPage from "./pages/ApiPage";
+// import RecipeDetailPage from './pages/RecipeDetailPage';
 
 function App() {
   return (
@@ -25,9 +25,9 @@ function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/add-recipe" element={<AddRecipePage />} />
             <Route path="/edit-recipe/:id" element={<EditRecipePage />} />
-            <Route path="/recipe/:id" element={<RecipePage />} />{" "}
-            <Route path="/recipes" element={<ApiPage />} /> {/* Add this line */}
-            {/* Add this line */}
+            <Route path="/recipe/:id" element={<RecipePage />} />
+            <Route path="/recipes" element={<ApiPage />} />
+            {/* <Route path="/recipe/:recipeId" element={<RecipeDetailPage />} /> */}
           </Routes>
         </div>
       </Router>
